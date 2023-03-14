@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct HomeView: View{
+    @StateObject var restaurantVM = RestaurantViewModel()
     var body: some View{
         ZStack{
             Color("AppColor").edgesIgnoringSafeArea(.all)
@@ -45,11 +46,12 @@ struct HomeView: View{
                 
                 Button(action: {
                     print("버튼 클릭")
+                    restaurantVM.fetchData()
                 }, label: {
                     Text("랜덤 돌리기")
                 }).buttonStyle(BtnStyle(type: .clickBtn))
             }
-        }
+        }.environmentObject(restaurantVM)
     }
 }
 
